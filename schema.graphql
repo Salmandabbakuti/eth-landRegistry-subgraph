@@ -1,0 +1,27 @@
+type Land @entity {
+  id: ID!
+  landId: BigInt! # uint256
+  plotCoords: String! # string
+  area: BigInt! # uint256
+  owner: Bytes! # address
+  verifiedBy: Bytes # address
+  status: Int! # uint8
+  updatedAt: BigInt!
+}
+
+type LandTransfer @entity {
+  id: ID!
+  landId: BigInt! # uint256
+  from: Bytes! # address
+  to: Bytes! # address
+  verifiedBy: Bytes # address
+  status: Int! # uint8
+  updatedAt: BigInt!
+}
+
+type User @entity {
+  id: ID!
+  address: Bytes! # address
+  role: Int! # uint8
+  updatedAt: BigInt!
+}

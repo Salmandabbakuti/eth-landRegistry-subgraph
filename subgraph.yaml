@@ -1,0 +1,34 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: LandRegistry
+    network: mumbai
+    source:
+      address: "0xD362ba148155E5aba1cE821c022BBf7E3d8a8231"
+      abi: LandRegistry
+      startBlock: 25866672
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Land
+        - LandTransfer
+        - User
+      abis:
+        - name: LandRegistry
+          file: ./abis/LandRegistry.json
+      eventHandlers:
+        - event: LandRegistered(uint256,string,uint256,address,uint8)
+          handler: handleLandRegistered
+        - event: LandRegistrationVerified(uint256,uint8,address)
+          handler: handleLandRegistrationVerified
+        - event: LandTransferRegistered(uint256,address,address,uint8)
+          handler: handleLandTransferRegistered
+        - event: LandTransferVerified(uint256,address,address,uint8,address)
+          handler: handleLandTransferVerified
+        - event: UserRegistered(address,uint8)
+          handler: handleUserRegistered
+      file: ./src/mapping.ts
