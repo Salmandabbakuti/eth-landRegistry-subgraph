@@ -1,3 +1,4 @@
+import { log } from '@graphprotocol/graph-ts'
 import {
   LandRegistered as LandRegisteredEvent,
   LandRegistrationVerified as LandRegistrationVerifiedEvent,
@@ -64,12 +65,17 @@ export function handleLandTransferVerified(
   landTransfer.verifiedBy = event.params.verifiedBy
   landTransfer.updatedAt = event.block.timestamp
   landTransfer.save()
-  if (event.params.status === 2) {
+  if (event.params.status == 2) {
+    log.debug('Block number: {}, transaction hash: {}', [
+      event.block.number.toString(), // "47596000"
+      event.transaction.hash.toHexString(), // "0x..."
+    ])
     const land = Land.load(event.params.landId.toString())
     if (land) {
       land.owner = event.params.to
       land.status = event.params.status
       land.updatedAt = event.block.timestamp
+      land.save()
     }
   }
 }
