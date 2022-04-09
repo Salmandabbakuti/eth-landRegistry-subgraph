@@ -151,7 +151,7 @@ contract LandRegistry {
         public
         onlyVerifiedAdmin(msg.sender)
     {
-      require(lands[_landId].status != Status.Pending, "Land status must be pending");
+      require(lands[_landId].status == Status.Pending, "Land status must be pending");
         lands[_landId].status = _status;
         lands[_landId].verifiedBy = msg.sender;
         emit LandRegistrationVerified(_landId, _status, msg.sender);

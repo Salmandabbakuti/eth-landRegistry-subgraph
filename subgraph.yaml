@@ -6,9 +6,9 @@ dataSources:
     name: LandRegistry
     network: mumbai
     source:
-      address: "0xD362ba148155E5aba1cE821c022BBf7E3d8a8231"
+      address: "0x0bb2Eebadd4361ca757FEddb59989Ab2e9b9f246"
       abi: LandRegistry
-      startBlock: 25866672
+      startBlock: 25866897
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
