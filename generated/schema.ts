@@ -227,7 +227,7 @@ export class User extends Entity {
     this.set("id", Value.fromString(id));
 
     this.set("address", Value.fromBytes(Bytes.empty()));
-    this.set("role", Value.fromI32(0));
+    this.set("role", Value.fromString(""));
     this.set("updatedAt", Value.fromBigInt(BigInt.zero()));
   }
 
@@ -265,13 +265,13 @@ export class User extends Entity {
     this.set("address", Value.fromBytes(value));
   }
 
-  get role(): i32 {
+  get role(): string {
     let value = this.get("role");
-    return value!.toI32();
+    return value!.toString();
   }
 
-  set role(value: i32) {
-    this.set("role", Value.fromI32(value));
+  set role(value: string) {
+    this.set("role", Value.fromString(value));
   }
 
   get updatedAt(): BigInt {

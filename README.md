@@ -1,6 +1,16 @@
 # landRegistry-ethereum
-Land registry on ethereum
+Land registry subgraph
 ##### Steps:
+
+Create .env file with the following variables:
+
+```
+PRIV_KEY=
+POLYGON_MUMBAI_RPC_URL=
+POLYGON_MAINNET_RPC_URL=
+ROPSTEN_RPC_URL=
+RINKEBY_RPC_URL=
+```
 
 1. Compile and deploy contract
 2. Update ```abis``` folder with abi of deployed contract

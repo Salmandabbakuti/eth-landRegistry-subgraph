@@ -19,9 +19,14 @@ type LandTransfer @entity {
   updatedAt: BigInt!
 }
 
+enum UserRole {
+  USER
+  ADMIN
+}
+
 type User @entity {
   id: ID!
   address: Bytes! # address
-  role: Int! # uint8
+  role: UserRole! # uint8
   updatedAt: BigInt!
 }

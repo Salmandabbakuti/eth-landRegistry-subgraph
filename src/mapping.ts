@@ -86,7 +86,7 @@ export function handleUserRegistered(event: UserRegisteredEvent): void {
     user = new User(event.params.addr.toHex())
   }
   user.address = event.params.addr
-  user.role = event.params.role
+  user.role = event.params.role == 0 ? "ADMIN" : "USER"
   user.updatedAt = event.block.timestamp
   user.save()
 }
