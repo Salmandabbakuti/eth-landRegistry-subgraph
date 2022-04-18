@@ -1,3 +1,9 @@
+enum LandStatus {
+  NOT_EXISTS
+  PENDING
+  APPROVED
+  REJECTED
+}
 type Land @entity {
   id: ID!
   landId: BigInt! # uint256
@@ -5,7 +11,7 @@ type Land @entity {
   area: BigInt! # uint256
   owner: Bytes! # address
   verifiedBy: Bytes # address
-  status: Int! # uint8
+  status: LandStatus! # uint8
   updatedAt: BigInt!
 }
 
@@ -15,7 +21,7 @@ type LandTransfer @entity {
   from: Bytes! # address
   to: Bytes! # address
   verifiedBy: Bytes # address
-  status: Int! # uint8
+  status: LandStatus! # uint8
   updatedAt: BigInt!
 }
 

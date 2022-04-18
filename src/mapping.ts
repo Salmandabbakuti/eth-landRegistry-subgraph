@@ -12,13 +12,29 @@ import {
   User
 } from "../generated/schema"
 
+const toLandStatus = (status: i32): string => {
+  switch (status) {
+    case 0:
+      return "NOT_EXISTS"
+    case 1:
+      return "PENDING"
+    case 2:
+      return "APPROVED"
+    case 3:
+      return "REJECTED"
+    default:
+      return "NOT_EXISTS"
+  }
+
+}
+
 export function handleLandRegistered(event: LandRegisteredEvent): void {
   let land = new Land(event.params.landId.toString())
   land.landId = event.params.landId
   land.plotCoords = event.params.plotCoords
   land.area = event.params.area
   land.owner = event.params.owner
-  land.status = event.params.status
+  land.status = toLandStatus(event.params.status);
   land.updatedAt = event.block.timestamp
   land.save()
 }
@@ -30,7 +46,7 @@ export function handleLandRegistrationVerified(
   if (!land) {
     land = new Land(event.params.landId.toString())
   }
-  land.status = event.params.status
+  land.status = toLandStatus(event.params.status);
   land.verifiedBy = event.params.verifiedBy
   land.updatedAt = event.block.timestamp
   land.save()
@@ -43,11 +59,11 @@ export function handleLandTransferRegistered(
   landTransfer.landId = event.params.landId
   landTransfer.from = event.params.from
   landTransfer.to = event.params.to
-  landTransfer.status = event.params.status
+  landTransfer.status = toLandStatus(event.params.status);
   landTransfer.updatedAt = event.block.timestamp
   let land = Land.load(event.params.landId.toString())
   if (land) {
-    land.status = event.params.status
+    land.status = toLandStatus(event.params.status);
     land.updatedAt = event.block.timestamp
     land.save()
   }
@@ -61,7 +77,7 @@ export function handleLandTransferVerified(
   landTransfer.landId = event.params.landId
   landTransfer.from = event.params.from
   landTransfer.to = event.params.to
-  landTransfer.status = event.params.status
+  landTransfer.status = toLandStatus(event.params.status);
   landTransfer.verifiedBy = event.params.verifiedBy
   landTransfer.updatedAt = event.block.timestamp
   landTransfer.save()
@@ -73,7 +89,7 @@ export function handleLandTransferVerified(
     const land = Land.load(event.params.landId.toString())
     if (land) {
       land.owner = event.params.to
-      land.status = event.params.status
+      land.status = toLandStatus(event.params.status);
       land.updatedAt = event.block.timestamp
       land.save()
     }

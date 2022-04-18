@@ -20,7 +20,7 @@ export class Land extends Entity {
     this.set("plotCoords", Value.fromString(""));
     this.set("area", Value.fromBigInt(BigInt.zero()));
     this.set("owner", Value.fromBytes(Bytes.empty()));
-    this.set("status", Value.fromI32(0));
+    this.set("status", Value.fromString(""));
     this.set("updatedAt", Value.fromBigInt(BigInt.zero()));
   }
 
@@ -102,13 +102,13 @@ export class Land extends Entity {
     }
   }
 
-  get status(): i32 {
+  get status(): string {
     let value = this.get("status");
-    return value!.toI32();
+    return value!.toString();
   }
 
-  set status(value: i32) {
-    this.set("status", Value.fromI32(value));
+  set status(value: string) {
+    this.set("status", Value.fromString(value));
   }
 
   get updatedAt(): BigInt {
@@ -129,7 +129,7 @@ export class LandTransfer extends Entity {
     this.set("landId", Value.fromBigInt(BigInt.zero()));
     this.set("from", Value.fromBytes(Bytes.empty()));
     this.set("to", Value.fromBytes(Bytes.empty()));
-    this.set("status", Value.fromI32(0));
+    this.set("status", Value.fromString(""));
     this.set("updatedAt", Value.fromBigInt(BigInt.zero()));
   }
 
@@ -202,13 +202,13 @@ export class LandTransfer extends Entity {
     }
   }
 
-  get status(): i32 {
+  get status(): string {
     let value = this.get("status");
-    return value!.toI32();
+    return value!.toString();
   }
 
-  set status(value: i32) {
-    this.set("status", Value.fromI32(value));
+  set status(value: string) {
+    this.set("status", Value.fromString(value));
   }
 
   get updatedAt(): BigInt {
